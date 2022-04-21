@@ -1,0 +1,24 @@
+commands: []
+data:
+  default:
+    data:
+      author_email: derobertis.nick@gmail.com
+      full_name: Github Actions Semantic Release Example
+      package_author: Nick DeRobertis
+      repo_name: github-actions-semantic-release-example
+      repo_username: nickderobertis
+      short_description: An example repo for copier-github-actions-semantic-release
+    folder_name: github-actions-semantic-release-example
+run_configs:
+  default_publish:
+    post_init:
+      - gh repo create --public --source=.
+      - git push origin master
+      - git push --all origin
+    post_update:
+      - fxt merge
+      - git push --all origin
+  default_serve:
+    data_name: default
+    post_init:
+      - npm install
