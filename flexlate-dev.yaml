@@ -41,9 +41,19 @@ run_configs:
   composite:
     extends: default
     data_name: composite
-  javascript:
+  javascript-serve:
     extends: default
     data_name: javascript
+  javascript-publish:
+    extends: javascript-serve
+    post_update:
+      - fxt merge
+      - npm install
+      - npm run build
+      - git add dist
+      - "git commit -m 'chore: Auto-commit build'"
+      - git push origin master
+      - git push --all origin
   docker:
     extends: default
     data_name: docker

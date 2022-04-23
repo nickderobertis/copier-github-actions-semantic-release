@@ -1,0 +1,26 @@
+{
+  "name": "output",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "husky install"{% if action_type == "javascript" %},
+    "build": "ncc build index.js --license licenses.txt"
+    {%- endif %}
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    {%- if action_type == "javascript" %}
+    "@vercel/ncc": "^0.33.4",
+    {%- endif %}
+    "husky": "^7.0.4"
+  {%- if action_type == "javascript" %}
+  },
+  "dependencies": {
+    "@actions/core": "^1.6.0"
+  {%- endif %}
+  }
+}
