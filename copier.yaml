@@ -23,6 +23,15 @@ full_name:
   help: Full name of the project with formatting
   default: "{{ repo_name | replace('-', ' ') | title }}"
 
+action_type:
+  type: str
+  help: Type of Github Action
+  choices:
+    - composite
+    - javascript
+    - docker
+  default: composite
+
 repo_username:
   type: str
   help: Name of the Github user that will own the repo

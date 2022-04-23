@@ -9,6 +9,21 @@ data:
       repo_username: nickderobertis
       short_description: An example repo for copier-github-actions-semantic-release
     folder_name: github-actions-semantic-release-example
+  composite:
+    extends: default
+    data:
+      action_type: composite
+    folder_name: github-actions-semantic-release-composite-example
+  javascript:
+    extends: default
+    data:
+      action_type: javascript
+    folder_name: github-actions-semantic-release-javascript-example
+  docker:
+    extends: default
+    data:
+      action_type: docker
+    folder_name: github-actions-semantic-release-docker-example
 run_configs:
   default_publish:
     post_init:
@@ -22,3 +37,12 @@ run_configs:
     data_name: default
     post_init:
       - npm install
+  composite:
+    extends: default
+    data_name: composite
+  javascript:
+    extends: default
+    data_name: javascript
+  docker:
+    extends: default
+    data_name: docker
