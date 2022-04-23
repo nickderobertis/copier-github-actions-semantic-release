@@ -37,6 +37,7 @@ run_configs:
     data_name: default
     post_init:
       - npm install
+    auto_commit_message: "chore: Auto-commit manual changes"
   composite:
     extends: default
     data_name: composite
