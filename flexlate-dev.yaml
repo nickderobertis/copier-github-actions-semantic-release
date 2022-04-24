@@ -52,7 +52,6 @@ run_configs:
       - npm run build
       - git add dist
       - "git commit -m 'chore: Auto-commit build'"
-      - git push origin master
       - git push --all origin
   docker:
     extends: default
