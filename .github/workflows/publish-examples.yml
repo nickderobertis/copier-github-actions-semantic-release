@@ -17,6 +17,8 @@ jobs:
         run: |
           cd "$RUNNER_TEMP"
           gh repo clone $GITHUB_REPOSITORY
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Publish the example repositories
         run: |
           # Strip owner to get repository name
