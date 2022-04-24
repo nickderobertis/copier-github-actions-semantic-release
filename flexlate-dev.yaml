@@ -32,6 +32,8 @@ data:
 run_configs:
   default:
     publish:
+      pre_check:
+        - if [ -n "$(find . -prune -empty 2>/dev/null)" ]; then gh repo clone {{ data.folder_name }} .; fi
       post_init:
         - gh repo create --public --source=.
         - git push origin master
@@ -56,7 +58,8 @@ run_configs:
         - npm install
         - npm run build
         - git add -A
-        - "git commit -m 'chore: Auto-commit build'"
+        - "git commit -m 'feat: Auto-commit new build'"
+        - git push origin master
         - git push --all origin
   typescript:
     extends: javascript
