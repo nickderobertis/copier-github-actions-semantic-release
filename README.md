@@ -7,6 +7,15 @@ including creating specific version tags e.g. `v1.0.2` as well as major version 
 all Github Action types: `composite`, `docker`, and `javascript`, as well as an additional `typescript` type that is already set up to
 transpile into a plain `javascript` action.
 
+## Examples
+
+See an example output repository for each of the Github Action types:
+
+- [Composite](https://github.com/nickderobertis/github-actions-semantic-release-composite-example)
+- [Docker](https://github.com/nickderobertis/github-actions-semantic-release-docker-example)
+- [JavaScript](https://github.com/nickderobertis/github-actions-semantic-release-javascript-example)
+- [TypeScript](https://github.com/nickderobertis/github-actions-semantic-release-typescript-example)
+
 ## Getting Started
 
 It's recommended to use [Flexlate](https://nickderobertis.github.io/flexlate/) so that you can keep the project updated with changes in the template.
