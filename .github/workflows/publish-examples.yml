@@ -15,5 +15,12 @@ jobs:
         run: |
           git config --global user.email "derobertis.nick@gmail.com"
           git config --global user.name "Nick DeRobertis"
+      - name: Clone the example repositories
+        run: |
+          cd "$RUNNER_TEMP"
+          git clone https://github.com/nickderobertis/github-actions-semantic-release-composite-example
+          git clone https://github.com/nickderobertis/github-actions-semantic-release-docker-example
+          git clone https://github.com/nickderobertis/github-actions-semantic-release-javascript-example
+          git clone https://github.com/nickderobertis/github-actions-semantic-release-tyescript-example
       - name: Publish the example repositories
         run: dfxt publish-all -n "$RUNNER_TEMP"
