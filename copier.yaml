@@ -15,7 +15,7 @@ _exclude:
   - node_modules
 
 _tasks:
-  - 'if [ -f "entrypoint.sh" ]; then chmod +x entrypoint.sh; fi'
+  - 'if [ -f "src/entrypoint.sh" ]; then chmod +x src/entrypoint.sh; fi'
 
 repo_name:
   type: str
@@ -32,6 +32,7 @@ action_type:
   choices:
     - composite
     - javascript
+    - typescript
     - docker
   default: composite
 

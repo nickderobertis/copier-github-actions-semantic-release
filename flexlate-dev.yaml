@@ -19,40 +19,48 @@ data:
     data:
       action_type: javascript
     folder_name: github-actions-semantic-release-javascript-example
+  typescript:
+    extends: default
+    data:
+      action_type: typescript
+    folder_name: github-actions-semantic-release-typescript-example
   docker:
     extends: default
     data:
       action_type: docker
     folder_name: github-actions-semantic-release-docker-example
 run_configs:
-  default_publish:
-    post_init:
-      - gh repo create --public --source=.
-      - git push origin master
-      - git push --all origin
-    post_update:
-      - fxt merge
-      - git push --all origin
-  default_serve:
-    data_name: default
-    post_init:
-      - npm install
-    auto_commit_message: "chore: Auto-commit manual changes"
+  default:
+    publish:
+      post_init:
+        - gh repo create --public --source=.
+        - git push origin master
+        - git push --all origin
+      post_update:
+        - fxt merge
+        - git push --all origin
+    serve:
+      data_name: default
+      post_init:
+        - npm install
+      auto_commit_message: "chore: Auto-commit manual changes"
   composite:
     extends: default
     data_name: composite
-  javascript-serve:
+  javascript:
     extends: default
     data_name: javascript
-  javascript-publish:
-    extends: javascript-serve
-    post_update:
-      - fxt merge
-      - npm install
-      - npm run build
-      - git add dist
-      - "git commit -m 'chore: Auto-commit build'"
-      - git push --all origin
+    publish:
+      post_update:
+        - fxt merge
+        - npm install
+        - npm run build
+        - git add -A
+        - "git commit -m 'chore: Auto-commit build'"
+        - git push --all origin
+  typescript:
+    extends: javascript
+    data_name: typescript
   docker:
     extends: default
     data_name: docker

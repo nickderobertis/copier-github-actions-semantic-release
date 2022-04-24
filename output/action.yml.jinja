@@ -1,15 +1,15 @@
 name: '{{ full_name }}'
 description: '{{ short_description }}'
 runs:
-  using: {{ {"composite": "composite", "docker": "docker", "javascript": "node16"}[action_type]}}
+  using: {{ {"composite": "composite", "docker": "docker", "javascript": "node16", "typescript": "node16"}[action_type]}}
   {%- if action_type == "composite" %}
   steps:
     - run: echo hello world
       shell: bash
   {% endif %}
   {%- if action_type == "docker" %}
-  image: "Dockerfile"
+  image: "src/Dockerfile"
   {% endif %}
-  {%- if action_type == "javascript" %}
+  {%- if action_type in ["javascript", "typescript"] %}
   main: "dist/index.js"
   {% endif %}

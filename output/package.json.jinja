@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky install"{% if action_type == "javascript" %},
-    "build": "ncc build index.js --license licenses.txt"
+    "build": "ncc build src/index.js --license licenses.txt"
+    {%- endif %}{% if action_type == "typescript" %},
+    "build": "npm run build:ts && npm run build:js",
+    "build:js": "ncc build ts-build/index.js --license licenses.txt",
+    "build:ts": "tsc"
     {%- endif %}
   },
   "author": "",
@@ -13,11 +17,14 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
-    {%- if action_type == "javascript" %}
+    {%- if action_type in ["javascript", "typescript"] %}
     "@vercel/ncc": "^0.33.4",
     {%- endif %}
+    {%- if action_type == "typescript" %}
+    "typescript": "^4.6.3",
+    {%- endif %}
     "husky": "^7.0.4"
-  {%- if action_type == "javascript" %}
+  {%- if action_type in ["javascript", "typescript"] %}
   },
   "dependencies": {
     "@actions/core": "^1.6.0"
