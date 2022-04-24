@@ -1,0 +1,15 @@
+name: Publish Example Repositories
+on: [push, workflow_dispatch]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: Publish the example repositories
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+      - name: Install Flexlate Dev Tools
+        run: pip install flexlate-dev
+      - name: Publish the example repositories
+        run: dfxt publish-all -n "$RUNNER_TEMP"
