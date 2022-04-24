@@ -22,7 +22,7 @@ jobs:
           git clone https://github.com/nickderobertis/github-actions-semantic-release-typescript-example
           git clone https://github.com/nickderobertis/copier-github-actions-semantic-release
       - name: Publish the example repositories
-        run: \
+        run: |
           dfxt publish-all -n "$RUNNER_TEMP" \
           --template "$RUNNER_TEMP/copier-github-actions-semantic-release" \
           --config "$RUNNER_TEMP/copier-github-actions-semantic-release/flexlate-dev.yaml"
