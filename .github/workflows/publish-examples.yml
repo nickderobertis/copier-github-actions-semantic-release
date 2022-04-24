@@ -10,9 +10,9 @@ jobs:
       - name: Install Flexlate Dev Tools
         run: pip install flexlate-dev
       - name: Configure Git Committer
-        run: gh auth setup-git
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config --global user.email "derobertis.nick@gmail.com"
+          git config --global user.name "Nick DeRobertis"
       - name: Clone the template repository in the temp dir
         run: |
           cd "$RUNNER_TEMP"
@@ -21,6 +21,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Publish the example repositories
         run: |
+          gh auth setup-git
           # Strip owner to get repository name
           repo_name="${GITHUB_REPOSITORY##*/}"
           cd "$RUNNER_TEMP/$repo_name"
