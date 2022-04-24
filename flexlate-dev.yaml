@@ -33,7 +33,7 @@ run_configs:
   default:
     publish:
       pre_check:
-        - if [ -n "$(find . -prune -empty 2>/dev/null)" ]; then gh repo clone {{ data.folder_name }} .; fi
+        - if [ -n "$(find . -prune -empty 2>/dev/null)" ]; then gh repo clone {{ data.folder_name }} .; else git pull origin master; fi
       post_init:
         - gh repo create --public --source=.
         - git push origin master
