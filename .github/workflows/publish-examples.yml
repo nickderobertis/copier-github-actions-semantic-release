@@ -6,7 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Publish the example repositories
     steps:
-      - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
       - name: Install Flexlate Dev Tools
         run: pip install flexlate-dev
@@ -14,8 +13,15 @@ jobs:
         run: |
           git config --global user.email "derobertis.nick@gmail.com"
           git config --global user.name "Nick DeRobertis"
+      - name: Clone the template repository in the temp dir
+        run: |
+          cd "$RUNNER_TEMP"
+          gh repo clone $GITHUB_REPOSITORY
       - name: Publish the example repositories
         run: |
-          dfxt publish-all -n "$RUNNER_TEMP"
+          # Strip owner to get repository name
+          repo_name="${GITHUB_REPOSITORY##*/}"
+          cd "$RUNNER_TEMP/$repo_name"
+          dfxt publish-all -n ..
         env:
-          GH_TOKEN: ${{ secrets.gh_token }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
