@@ -11,5 +11,9 @@ jobs:
       - uses: actions/setup-python@v3
       - name: Install Flexlate Dev Tools
         run: pip install flexlate-dev
+      - name: Configure Git Committer
+        run: |
+          git config --global user.email "derobertis.nick@gmail.com"
+          git config --global user.name "Nick DeRobertis"
       - name: Publish the example repositories
         run: dfxt publish-all -n "$RUNNER_TEMP"
