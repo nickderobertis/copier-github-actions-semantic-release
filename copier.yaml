@@ -54,3 +54,8 @@ author_email:
   type: str
   help: Email of the primary author of the project
   default: derobertis.nick@gmail.com
+
+main_branch_name:
+  type: str
+  help: Name of the main branch
+  default: main
